@@ -3,6 +3,7 @@
 
 ;; do not display a splash screen on startup
 (setq inhibit-splash-screen t)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; set the load path  
 
@@ -16,6 +17,10 @@
 ;; Load additional extension/setup for org-mode
 (load "~/.emacs.d/orgstuff.el" t)
 (load "~/.emacs.d/keybind.el" t)
+
+;; Setup customize file so it doesn't pollute main files.
+(setq custom-file "~/.emacs.d/customize.el")
+(load-file custom-file)
 
 ; Set it up so that vertically split windows don't truncate the lines
 ; Rather they wrap lines. (From comp.emacs)
