@@ -6,13 +6,13 @@
 ;;; interfacing with ELPA, the package archive.
 ;;; Move this code earlier if you want to reference
 ;;; packages in your .emacs.
-(when
-    (load
-     (expand-file-name "~/.emacs.d/elpa/package.el"))
-  (package-initialize))
+;; (when
+;;     (load
+;;      (expand-file-name "~/.emacs.d/elpa/package.el"))
+;;   (package-initialize))
 
-(add-to-list 'package-archives 
-             '("marmalade" . "http://marmalade-repo.org/packages/"))
+;; (add-to-list 'package-archives 
+;;              '("marmalade" . "http://marmalade-repo.org/packages/"))
 
 ;; do not display a splash screen on startup
 (setq inhibit-splash-screen t)
@@ -28,11 +28,25 @@
 
 
 ;; Load additional extension/setup for org-mode
-(load "~/.emacs.d/orgstuff.el" t)
+;;(load "~/.emacs.d/orgstuff.el" t)
 (load "~/.emacs.d/keybind.el" t)
 
 ;; Setup customize file so it doesn't pollute main files.
-(setq custom-file "~/.emacs.d/customize.el")
+
+;; This code is a riff on http://www.emacswiki.org/emacs/EmacsInitFileOfSylecn
+
+;; The default customize file is customize_term.el
+(setq custom-file "~/.emacs.d/customize_term.el")
+;; Override this if there is a window system present.
+(if (equal window-system 'w32)
+    (setq custom-file "~/.emacs.d/customize.el")
+  (if (equal window-system 'x)
+      (setq custom-file "~/.emacs.d/customize_linux.el")
+    (if (equal window-system 'ns)
+        (setq custom-file "~/.emacs.d/customize_mac.el")
+      )
+    )
+)
 (load-file custom-file)
 
 ; Set it up so that vertically split windows don't truncate the lines
