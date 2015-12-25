@@ -1,21 +1,20 @@
 ; init.el
 ; Emacs initialization.
 
-;;; This was installed by package-install.el.
-;;; This provides support for the package system and
-;;; interfacing with ELPA, the package archive.
-;;; Move this code earlier if you want to reference
-;;; packages in your .emacs.
-;; (when
-;;     (load
-;;      (expand-file-name "~/.emacs.d/elpa/package.el"))
-;;   (package-initialize))
-
-;; (add-to-list 'package-archives 
-;;              '("marmalade" . "http://marmalade-repo.org/packages/"))
 
 ;; do not display a splash screen on startup
 (setq inhibit-splash-screen t)
+
+
+;; Package Manager Setup (from MELPA webpage).
+
+(require 'package) ;; You might already have this line
+(add-to-list 'package-archives
+             '("melpa" . "http://melpa.org/packages/"))
+(when (< emacs-major-version 24)
+  ;; For important compatibility libraries like cl-lib
+  (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
+(package-initialize) ;; You might already have this line
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; set the load path  
@@ -28,7 +27,7 @@
 
 
 ;; Load additional extension/setup for org-mode
-;;(load "~/.emacs.d/orgstuff.el" t)
+(load "~/.emacs.d/orgstuff.el" t)
 (load "~/.emacs.d/keybind.el" t)
 
 ;; Setup customize file so it doesn't pollute main files.
@@ -87,7 +86,7 @@
                       (make-local-variable 'indent-tabs-mode)
                       (setq indent-tabs-mode nil))))
 
-(setq default-major-mode 'org-mode)
+;(setq default-major-mode 'org-mode)
 
 (add-hook 'fundamental-mode-hook 'turn-on-auto-fill)
 

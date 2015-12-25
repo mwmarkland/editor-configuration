@@ -1,6 +1,6 @@
 ;; org-mode setup file.
 
-;; Thsi comres from the orgmode.org website.
+;; This comres from the orgmode.org website.
 ;;(require 'org-install)
 
 ;; The following lines are always needed.  Choose your own keys.
@@ -11,4 +11,4 @@
 (global-set-key "\C-cb" 'org-iswitchb)
 
 (setq org-todo-keywords
-       '((sequence "TODO(t)" "IN_PROGRESS(!)" "WAITING(@/!)" "|" "DONE(d@/!)" )))
+      '((sequence "TODO(t)" "IN_PROGRESS(!)" "WAITING(@/!)" "|" "DONE(d@/!)" )))
