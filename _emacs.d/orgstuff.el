@@ -11,4 +11,4 @@
 (global-set-key "\C-cb" 'org-iswitchb)
 
 (setq org-todo-keywords
-      '((sequence "TODO(t)" "IN_PROGRESS(!)" "WAITING(@/!)" "|" "DONE(d@/!)" )))
+      '((sequence "TODO(!)" "IN_PROGRESS(!)" "WAITING(@/!)" "|" "DONE(d@/!)" )))

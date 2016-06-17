@@ -26,9 +26,17 @@
 ;;   (normal-top-level-add-subdirs-to-load-path))
 
 
-;; Load additional extension/setup for org-mode
+;; Load additional extension/setup files for specific modes/topics.
+;; org-mode
+;; Custom key bindings
+;; Tramp
+
 (load "~/.emacs.d/orgstuff.el" t)
 (load "~/.emacs.d/keybind.el" t)
+(load "~/.emacs.d/tramp_cust.el" t)
+(load "~/.emacs.d/hooks.el" t)
+
+(require 'font-lock)
 
 ;; Setup customize file so it doesn't pollute main files.
 
@@ -59,36 +67,12 @@
 (setq-default font-lock-use-maximal-decoration t)
 (setq global-font-lock-mode t)
 (setq font-lock-maximum-decoration t)
-(require 'font-lock)
-; Make font-lock fontify buffers automatically if they
-; come up in font-lock-mode
-(add-hook 'font-lock-mode-hook 'font-lock-fontify-buffer)
-(add-hook 'c-mode-common-hook 'turn-on-font-lock)
-(add-hook 'lisp-mode-hook 'turn-on-font-lock)
-(add-hook 'asm-mode-hook 'turn-on-font-lock)
-(add-hook 'm2-mode-hook 'turn-on-font-lock)
-(add-hook 'sh-mode-hook 'turn-on-font-lock)
-(add-hook 'perl-mode-hook 'turn-on-font-lock)
-(add-hook 'compilation-mode-hook 'turn-on-font-lock)
-(add-hook 'message-mode-hook 'turn-on-font-lock)
-(add-hook 'outline-mode-hook 'turn-on-font-lock)
-(add-hook 'makefile-mode-hook 'turn-on-font-lock)
-(add-hook 'html-mode-hook 'turn-on-font-lock)
-(add-hook 'emacs-lisp-mode-hook 'turn-on-font-lock)
-(add-hook 'dired-mode-hook 'turn-on-font-lock)
 
 ; Set transient mark mode
 (transient-mark-mode t)       
 
-; Make sure that no tabs appear in TeX and LaTeX documents
-(add-hook 'tex-mode-hook
-          (function (lambda ()
-                      (make-local-variable 'indent-tabs-mode)
-                      (setq indent-tabs-mode nil))))
-
 ;(setq default-major-mode 'org-mode)
 
-(add-hook 'fundamental-mode-hook 'turn-on-auto-fill)
 
 ;; Modifying the style of C/C++ indentation to do case statements and access
 ;; specifiers more close to the way I like.
